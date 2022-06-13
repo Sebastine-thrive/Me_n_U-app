@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## The React MaterialUI library was used in the project.
+   Deployed site: https://me-n-u.netlify.app
 
 ## Available Scripts
 
