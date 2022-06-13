@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import Feed from "./components/mainFeedFolder/Feed";
+import Navbar from "./components/navbarFolder/Navbar";
+import Rightbar from "./components/rightbarFolder/Rightbar";
+import Leftbar from "./components/leftbarFolder/Leftbar";
+import LeftbarControl from "./components/leftbarFolder/LeftbarControl"
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { Add } from "./components/Add";
+import { ThemeProvider } from "@mui/material";
+import { useState } from "react";
+import { createTheme } from '@mui/material/styles';
+
 
 function App() {
+
+  const [mode, setMode] = useState("light")
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode
+    }
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={darkTheme}>
+      <Box maxWidth={"100%"}
+        bgcolor={"background.default"}
+        color={"text.primary"}>
+
+        <Navbar sx={{ width: "100%" }} />
+
+        <LeftbarControl mode={mode} setMode={setMode} />
+
+
+        <Grid container
+          direction="row"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+          <Grid item sm={2} md={2} lg={2} >
+            <Leftbar mode={mode} setMode={setMode} />
+          </Grid>
+          <Grid item sm={5} md={6} lg={7}>
+            <Feed id="#pages" />
+          </Grid>
+
+          <Grid item sm={5} md={4} lg={3}>
+            <Rightbar />
+          </Grid>
+
+        </Grid>
+        <Add />
+      </Box>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default App; 
